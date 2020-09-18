@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\netcoreapp3.1\HelloWorld.AssemblyInfo.cs" />
+    <Compile Include="obj\Release\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\netcoreapp3.1\HelloWorld.AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.deps.json" />
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.exe" />
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.pdb" />
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.runtimeconfig.dev.json" />
+    <None Include="bin\Debug\netcoreapp3.1\HelloWorld.runtimeconfig.json" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.assets.cache" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.csproj.FileListAbsolute.txt" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.dll" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.exe" />
+    <None Include="obj\Debug\netcoreapp3.1\HelloWorld.pdb" />
+    <None Include="obj\HelloWorld.csproj.nuget.cache" />
+    <None Include="obj\HelloWorld.csproj.nuget.dgspec.json" />
+    <None Include="obj\HelloWorld.csproj.nuget.g.props" />
+    <None Include="obj\HelloWorld.csproj.nuget.g.targets" />
+    <None Include="obj\project.assets.json" />
+    <None Include="obj\Release\netcoreapp3.1\HelloWorld.AssemblyInfoInputs.cache" />
+    <None Include="obj\Release\netcoreapp3.1\HelloWorld.assets.cache" />
+  </ItemGroup>
+
+</Project>
