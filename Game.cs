@@ -5,22 +5,19 @@ using System.Text;
 namespace HelloWorld
 {
 
-    struct Item
-    {
-        public int statBoost;
-        public string name;
-    }
+
     class Game
     {
         bool _gameOver = false;
-        Player player1;
-        Player player2;
+        Player player;
+        Player _enemy;
         Item longSword;
         Item dagger;
         Item bow;
         Item battleAxe;
         Item mace;
-        Item EightNineYearOldMan;
+        Shop shop;
+
         //Run the game
         public void Run()
         {
@@ -68,12 +65,11 @@ namespace HelloWorld
             Console.WriteLine("\n Loadout 2: ");
             Console.WriteLine(battleAxe.name);
             Console.WriteLine(mace.name);
-            Console.WriteLine(EightNineYearOldMan.name);
             //Weapon Choose
             //---------------------------------------
             //wHY ArE WE HeRE SuuffEriNg?
             char input;
-            GetInput(out input, "Longsword", "Dagger", "Welcome to my blacksmith, newcomer 1! Please wisely choose a weapon might suit you.");
+            GetInput(out input, "Loudout 2", "Loadout 1 ", "Choose your Loadout", "");
             //HAVE YOU SEEN 89 YEAR-OLD MAN?
             //HAVE YOU SEEN 89 YEAR-OLD MAN?
             //HAVE YOU SEEN 89 YEAR-OLD MAN?
@@ -86,37 +82,19 @@ namespace HelloWorld
                 input = Console.ReadKey().KeyChar;
                 if (input == '1')
                 {
-                    player.AddItemToInventory(longSword, 0);
-                    player.AddItemToInventory(dagger, 1);
-                    player.AddItemToInventory(bow, 2);
+                    player.AddItemToInventory(longSword, 0,0);
+                    player.AddItemToInventory(dagger, 1,0);
+                    player.AddItemToInventory(bow, 2,0);
                 }
                 else if (input == '2')
                 {
-                    player.AddItemToInventory(battleAxe, 0);
-                    player.AddItemToInventory(mace, 1);
-                    player.AddItemToInventory(EightNineYearOldMan, 2);
+                    player.AddItemToInventory(battleAxe, 0,0);
+                    player.AddItemToInventory(mace, 1,0);
                 }
                 Console.WriteLine("Player 1");
-                player1.PrintStat();
+                this.player.PrintStat();
 
                 Console.Clear();
-
-                GetInput(out input, "Longsword", "Dagger", "Welcome to my blacksmith, newcomer 2! Please wisely choose a weapon might suit you.");
-
-                while (input != '1' && input != '2')
-                {
-                    input = Console.ReadKey().KeyChar;
-                    if (input == '1')
-                    {
-                        player2.damage += longSword.statBoost;
-                    }
-                    else if (input == '2')
-                    {
-                        player2.damage += dagger.statBoost;
-                    }
-                    Console.WriteLine("Player 2");
-                    player2.PrintStat();
-                }
             }
         }
 
@@ -124,7 +102,7 @@ namespace HelloWorld
         {
             Console.WriteLine("What is your name, mortal?");
             string name = Console.ReadLine();
-            player = new Player(name, 100, 10);
+            player = new Player(name, 100, 10, 0);
             SelectLoadout(player);
         }
 
@@ -140,6 +118,9 @@ namespace HelloWorld
             battleAxe.statBoost = 19;
             mace.name = "Mace";
             mace.statBoost = 17;
+
+            healthPotion.cost = 7;
+            healthPotion.name = "Health Potion";
         }
 
         public void SwitchWeapon(Player player)
@@ -190,33 +171,34 @@ namespace HelloWorld
             }
         }
 
+
         public void StartBattle()
         {
             Console.Clear();
             Console.WriteLine("Fight to death!");
 
-            while (player1.GetIsAlive() && player2.GetIsAlive())
+            while (player.GetIsAlive() && _enemy.GetIsAlive())
             {
                 Console.WriteLine("Player 1");
-                player1.PrintStat();
+                player.PrintStat();
                 //Player 1 turn start
                 char input;
-                GetInput(out input, "Attack", "Change Weapon", "Your Turn, Player 1");
+                GetInput(out input, "Attack", "Change Weapon", "Your Turn, Player 1","");
 
                 if(input == '1')
                 {
 
-                    player2.Attack(player1);
+                    _enemy.Attack(player);
 
                 }
                 else
                 {
-                    SwitchWeapon(player1);
+                    SwitchWeapon(player);
                 }
 
                 
             }
-            if (player1.GetIsAlive())
+            if (player.GetIsAlive())
             {
                 Console.WriteLine("Player 1 Won");
             }
@@ -239,8 +221,8 @@ namespace HelloWorld
         //Repeated until the game ends
         public void Update()
         {
-            CreateCharacter(player1);
-            SelectLoadout(player1);
+            CreateCharacter(player);
+            SelectLoadout(player);
             StartBattle();
         }
 

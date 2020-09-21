@@ -4,8 +4,9 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Hit_Chance
+    class Armor : Item
     {
-        //I'm so lonely
+        int defense;
+
     }
 }

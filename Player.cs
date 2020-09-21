@@ -9,9 +9,13 @@ namespace HelloWorld
         private string _name;
         private int _health;
         private int _damage;
-        private Item _inventory;
+        private Item[] _inventory;
         private Item currentWeapon;
         private Item hand;
+        public Item statBoost;
+        public Item currently;
+        private int gold;
+
 
 
         public Player()
@@ -33,22 +37,35 @@ namespace HelloWorld
             hand.statBoost = 1;
         }
 
-        public Item[] GetInventory();
+        public bool Buy(Item item, int Item)
+        {
+            return gold > 100;
+        }
+
+        public int GetGold()
+        {
+            return;
+        }
+
+        public Item[] GetInventory()
+        {
+            return _inventory;
+        }
 
         public void AddItemToInventory(Item item, int index)
         {
             _inventory[index] = item;
         }
-
+        //I have no idea why it cannot apply indexing.
         public bool Contains(int itemIndex)
         {
-            if (itemIndex > 0 && itemIndex < 4);
+            if (itemIndex > 0 && itemIndex < 4)
             {
                 return true;
             }
             return false;
         }
-            
+            //89 year-old man
         public void EquipItem(int itemIndex)
         {
             if (Contains(itemIndex) == true)
@@ -56,6 +73,7 @@ namespace HelloWorld
                 currentWeapon = _inventory[itemIndex];
             }
         }
+
 
         public string GetName()
         {
@@ -84,7 +102,7 @@ namespace HelloWorld
             Console.WriteLine("Damage: " + _damage);
         }
 
-        private void TakeDamage(int damageVal)
+        public void TakeDamage(int damageVal)
         {
             if(GetIsAlive())
             {

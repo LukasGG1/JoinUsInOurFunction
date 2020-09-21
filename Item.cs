@@ -4,8 +4,12 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Hit_Chance
+
+    class Item
     {
-        //I'm so lonely
+        public int statBoost;
+        public int cost;
+        public string name;
+
     }
 }

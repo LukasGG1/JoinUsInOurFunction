@@ -4,8 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Hit_Chance
+    class Consumble
     {
-        //I'm so lonely
     }
 }
