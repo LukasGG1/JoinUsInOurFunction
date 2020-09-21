@@ -147,7 +147,7 @@ namespace HelloWorld
             Item[] inventory = player.GetInventory();
             //Print all item to screen
             char input = ' ';
-            for(int i = 0; i < 3; i++);
+            for(int i = 0; i < 3; i++)
             {
                 Console.WriteLine((i + 1) + ". " + inventory[i].name + "Damage: " + inventory[inventory].statBoost);
             }

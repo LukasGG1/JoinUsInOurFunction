@@ -199,8 +199,6 @@ namespace HelloWorld
             {
                 Console.WriteLine("Player 1");
                 player1.PrintStat();
-                Console.WriteLine("Player 2");
-                player2.PrintStat();
                 //Player 1 turn start
                 char input;
                 GetInput(out input, "Attack", "Change Weapon", "Your Turn, Player 1");
@@ -242,9 +240,7 @@ namespace HelloWorld
         public void Update()
         {
             CreateCharacter(player1);
-            CreateCharacter(player2);
             SelectLoadout(player1);
-            SelectLoadout(player2);
             StartBattle();
         }
 
