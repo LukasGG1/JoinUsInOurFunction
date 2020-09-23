@@ -38,8 +38,13 @@ namespace HelloWorld
         }
 
         public bool Buy(Item item, int Item)
-        {
-            return gold > 100;
+        {   
+            // Am I doing wrong?
+            if(Item > 0 && Item > 4)
+            {
+                return true;
+            }
+            return false;
         }
 
         public int GetGold()

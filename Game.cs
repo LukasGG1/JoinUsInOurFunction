@@ -112,25 +112,41 @@ namespace HelloWorld
 
         public void InitializeItem()
         {
+            //Weapon&Armor
             longSword.name = "Long Sword";
             longSword.statBoost = 15;
+            longSword.cost = 10;
+            
             dagger.name = "Dagger";
             dagger.statBoost = 10;
+            dagger.cost = 7;
+            
             bow.name = "Bow";
             bow.statBoost = 10;
+            bow.cost = 15;
+            
             battleAxe.name = "Battle Axe";
             battleAxe.statBoost = 19;
+            battleAxe.cost = 35;
+            
             mace.name = "Mace";
+            mace.cost = 20;
             mace.statBoost = 17;
 
-
+            buckler.name = "Buckler";
+            buckler.cost = 13;
+            buckler.statBoost;
+            //Consumable Item
             healthPotion.cost = 7;
             healthPotion.name = "Health Potion";
         }
 
-        public Item PrintInventory(Item[])
+        public void PrintInventory(Item[]inventory) //I know it  need return; But, I want console.writeline
         {
-            Console.WriteLine();
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                Console.WriteLine();
+            }
         }
 
         private void OpenShopMenu()
