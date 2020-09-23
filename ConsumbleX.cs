@@ -6,5 +6,6 @@ namespace HelloWorld
 {
     class Consumble
     {
+        Item healthPotion;
     }
 }

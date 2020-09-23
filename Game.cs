@@ -16,7 +16,11 @@ namespace HelloWorld
         Item bow;
         Item battleAxe;
         Item mace;
+        Item healthPotion; //as arrow
+        Item sappherie; //as gem
+        Item buckler; //as shield
         Shop shop;
+        private Item[] shopInventory;
 
         //Run the game
         public void Run()
@@ -82,14 +86,14 @@ namespace HelloWorld
                 input = Console.ReadKey().KeyChar;
                 if (input == '1')
                 {
-                    player.AddItemToInventory(longSword, 0,0);
-                    player.AddItemToInventory(dagger, 1,0);
-                    player.AddItemToInventory(bow, 2,0);
+                    player.AddItemToInventory(longSword, 0);
+                    player.AddItemToInventory(dagger, 1);
+                    player.AddItemToInventory(bow, 2);
                 }
                 else if (input == '2')
                 {
-                    player.AddItemToInventory(battleAxe, 0,0);
-                    player.AddItemToInventory(mace, 1,0);
+                    player.AddItemToInventory(battleAxe, 0);
+                    player.AddItemToInventory(mace, 1);
                 }
                 Console.WriteLine("Player 1");
                 this.player.PrintStat();
@@ -119,8 +123,19 @@ namespace HelloWorld
             mace.name = "Mace";
             mace.statBoost = 17;
 
+
             healthPotion.cost = 7;
             healthPotion.name = "Health Potion";
+        }
+
+        public Item PrintInventory(Item[])
+        {
+            Console.WriteLine();
+        }
+
+        private void OpenShopMenu()
+        {
+
         }
 
         public void SwitchWeapon(Player player)
@@ -130,7 +145,7 @@ namespace HelloWorld
             char input = ' ';
             for(int i = 0; i < 3; i++)
             {
-                Console.WriteLine((i + 1) + ". " + inventory[i].name + "Damage: " + inventory[inventory].statBoost);
+                Console.WriteLine((i + 1) + ". " + inventory[i].name + "Damage: " + inventory[i].statBoost);
             }
             Console.Write("> ");
             input = Console.ReadKey().KeyChar;
@@ -183,7 +198,7 @@ namespace HelloWorld
                 player.PrintStat();
                 //Player 1 turn start
                 char input;
-                GetInput(out input, "Attack", "Change Weapon", "Your Turn, Player 1","");
+                GetInput(out input, "Attack", "Inventory", "Your Turn, Player 1","");
 
                 if(input == '1')
                 {
@@ -195,9 +210,14 @@ namespace HelloWorld
                 {
                     SwitchWeapon(player);
                 }
+                if(input == '2')
+                {
+                   
+                }
 
                 
             }
+            Player PrintStat;
             if (player.GetIsAlive())
             {
                 Console.WriteLine("Player 1 Won");

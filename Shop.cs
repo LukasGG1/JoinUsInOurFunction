@@ -14,7 +14,12 @@ namespace HelloWorld
         {
 
         }
-        
+
+        public void CheckPlayerFunds(Player)
+        {
+
+        }
+
         public bool Sell(Player player, int shopIndex, int playerIndex)
         {
             return player.Buy(_inventory[shopIndex], playerIndex);

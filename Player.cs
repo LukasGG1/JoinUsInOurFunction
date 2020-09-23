@@ -44,7 +44,7 @@ namespace HelloWorld
 
         public int GetGold()
         {
-            return;
+            return gold;
         }
 
         public Item[] GetInventory()
