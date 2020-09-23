@@ -21,12 +21,13 @@ namespace HelloWorld
         public Player()
         {
             _inventory = new Item[3];
+            gold = 100;
             _health = 100;
             _damage = 10;
             hand.name = "Kira's Fetish";
             hand.statBoost = 1;
         }
-
+                            //S.H.I.E.L.D       0
         public Player(string nameVal, int healthVal, int damageVal, int inventorySize)
         {
             _name = nameVal;
@@ -37,11 +38,14 @@ namespace HelloWorld
             hand.statBoost = 1;
         }
 
-        public bool Buy(Item item, int Item)
+        public bool Buy(Item item, int inventoryIndex)
         {   
             // Am I doing wrong?
-            if(Item > 0 && Item > 4)
+            if(gold >= item.cost)
             {
+                //pay for item
+                gold -= item.cost;
+                _inventory[inventoryIndex] = item;
                 return true;
             }
             return false;

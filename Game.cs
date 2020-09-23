@@ -9,17 +9,17 @@ namespace HelloWorld
     class Game
     {
         bool _gameOver = false;
-        Player player;
+        private Player player;
         Player _enemy;
         Item longSword;
         Item dagger;
         Item bow;
         Item battleAxe;
         Item mace;
-        Item healthPotion; //as arrow
-        Item sappherie; //as gem
-        Item buckler; //as shield
-        Shop shop;
+        private Item healthPotion; //as arrow
+        private Item sappherie; //as gem
+        private Item buckler; //as shield
+        private Shop shop;
         private Item[] shopInventory;
 
         //Run the game
@@ -34,6 +34,7 @@ namespace HelloWorld
         
         End();
         }
+
         //Equip item to both players in the beginnning of the game
         public void GetInput(out char input, string option1, string option2, string option3, string query)
         {
@@ -135,131 +136,204 @@ namespace HelloWorld
 
             buckler.name = "Buckler";
             buckler.cost = 13;
-            buckler.statBoost;
+
             //Consumable Item
             healthPotion.cost = 7;
             healthPotion.name = "Health Potion";
+
+            //Valuable Item
+            sappherie.cost = 50;
+            sappherie.name = "Sappherie";
         }
 
         public void PrintInventory(Item[]inventory) //I know it  need return; But, I want console.writeline
         {
             for (int i = 0; i < inventory.Length; i++)
             {
-                Console.WriteLine();
+                Console.WriteLine((i + 1) + "." + inventory[i].name + inventory[i].cost);
             }
         }
 
         private void OpenShopMenu()
         {
+            //print a that bad boy as welcome message and all the choices to the screen
+            Console.WriteLine("Welcome to my shop! Please select an fine item, sir.");
 
-        }
+            PrintInventory(shopInventory);
 
-        public void SwitchWeapon(Player player)
-        {
-            Item[] inventory = player.GetInventory();
-            //Print all item to screen
-            char input = ' ';
-            for(int i = 0; i < 3; i++)
-            {
-                Console.WriteLine((i + 1) + ". " + inventory[i].name + "Damage: " + inventory[i].statBoost);
-            }
-            Console.Write("> ");
-            input = Console.ReadKey().KeyChar;
-
-            GetInput(out input, inventory[0].name, inventory[1], inventory[2].name, "Choose your weapon");
-
-
-            switch(input)
+            char input = Console.ReadKey().KeyChar;
+            int itemIndex = -1;
+            switch (input)
             {
                 case '1':
                     {
-                        player.EquipItem(0);
-                        Console.WriteLine("You equipped " + inventory[0].name);
-                        Console.WriteLine("Damage increased by " + inventory[0].statBoost);
+                        itemIndex = 0;
                         break;
                     }
                 case '2':
                     {
-                        player.EquipItem(1);
-                        Console.WriteLine("You equipped " + inventory[1].name);
-                        Console.WriteLine("Damage increased by " + inventory[1].statBoost);
+                        itemIndex = 1;
                         break;
                     }
                 case '3':
                     {
-                        player.EquipItem(2);
-                        Console.WriteLine("You equipped " + inventory[2].name);
-                        Console.WriteLine("Damage increased by " + inventory[2].statBoost);
+                        itemIndex = 2;
                         break;
                     }
                 default:
                     {
-                        player.UnequipItem();
-                        Console.WriteLine("You are thinking about your voice and you acciently dropped weapon");
+                        return;
+                    }
 
+            }
+
+            if(player.GetGold() < shopInventory[itemIndex].cost)
+            {
+                Console.WriteLine("HaHa, you poor! You can't afford this!");
+                return;
+            }
+            Console.WriteLine("Choose a slot to replace.");
+            PrintInventory(player.GetInventory());
+            //Get player Input
+            input = Console.ReadKey().KeyChar;
+            //set the value
+            int playerIndex = -1;
+            switch (input)
+            {
+                case '1':
+                    {
+                        playerIndex = 0;
                         break;
                     }
+                case '2':
+                    {
+                        playerIndex = 1;
+                        break;
+                    }
+                case '3':
+                    {
+                        playerIndex = 2;
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
+
             }
+            shop.Sell(player, itemIndex, playerIndex);
         }
 
+        //public void SwitchWeapon(Player player)
+        //{
+           // Item[] inventory = player.GetInventory();
+            //Print all item to screen
+            //char input = ' ';
+            //for(int i = 0; i < 3; i++)
+            //{
+            //    Console.WriteLine((i + 1) + ". " + inventory[i].name + "Damage: " + inventory[i].statBoost);
+           // }
+           // Console.Write("> ");
+           // input = Console.ReadKey().KeyChar;
 
-        public void StartBattle()
-        {
-            Console.Clear();
-            Console.WriteLine("Fight to death!");
+            //GetInput(out input, inventory[0].name, inventory[1], inventory[2].name, "Choose your weapon");
 
-            while (player.GetIsAlive() && _enemy.GetIsAlive())
-            {
-                Console.WriteLine("Player 1");
-                player.PrintStat();
+
+           // switch(input)
+            //{
+               // case '1':
+                 //   {
+                //        player.EquipItem(0);
+                //        Console.WriteLine("You equipped " + inventory[0].name);
+                //        Console.WriteLine("Damage increased by " + inventory[0].statBoost);
+                //        break;
+               //     }
+               // case '2':
+                //    {
+                   //     player.EquipItem(1);
+                   //     Console.WriteLine("You equipped " + inventory[1].name);
+                    //    Console.WriteLine("Damage increased by " + inventory[1].statBoost);
+                    //    break;
+                //    }
+              //  case '3':
+                 //   {
+                  //      player.EquipItem(2);
+                   //     Console.WriteLine("You equipped " + inventory[2].name);
+                    //    Console.WriteLine("Damage increased by " + inventory[2].statBoost);
+                    //    break;
+                  //  }
+              //  default:
+                //    {
+                //        player.UnequipItem();
+                //       Console.WriteLine("You are thinking about your voice and you acciently dropped weapon");
+
+                  //      break;
+                  //  }
+           // }
+     //   }
+
+
+       // public void StartBattle()
+       // {
+         //   Console.Clear();
+        //    Console.WriteLine("Fight to death!");
+
+          //  while (player.GetIsAlive() && _enemy.GetIsAlive())
+          //  {
+          //      Console.WriteLine("Player 1");
+           //     player.PrintStat();
                 //Player 1 turn start
-                char input;
-                GetInput(out input, "Attack", "Inventory", "Your Turn, Player 1","");
+           //     char input;
+            //    GetInput(out input, "Attack", "Inventory", "Your Turn, Player 1","");
 
-                if(input == '1')
-                {
+              //  if(input == '1')
+             //   {
+        //
+             //       _enemy.Attack(player);
 
-                    _enemy.Attack(player);
-
-                }
-                else
-                {
-                    SwitchWeapon(player);
-                }
-                if(input == '2')
-                {
+              //  }
+              //  else
+              //  {
+               //     SwitchWeapon(player);
+               // }
+              //  if(input == '2')
+             //  {
                    
-                }
+             //   }
 
                 
-            }
-            Player PrintStat;
-            if (player.GetIsAlive())
-            {
-                Console.WriteLine("Player 1 Won");
-            }
-            else
-            {
-                Console.WriteLine("Player 2 Won");
-            }
-            Console.Clear();
-            _gameOver = true;
-        }
+           // }
+           // Player PrintStat;
+           // if (player.GetIsAlive())
+            //{
+           //     Console.WriteLine("Player 1 Won");
+            //}
+           // else
+            //{
+            //    Console.WriteLine("Player 2 Won");
+            //}
+           // Console.Clear();
+          //  _gameOver = true;
+        //}
 
         //Performed once when the game begins
         public void Start()
         {
-
-            //InitializePlayer();
+            _gameOver = false;
+            player = new Player();
             InitializeItem();
+            shopInventory = new Item[] { healthPotion, buckler, sappherie };   
+            //mace, bow, dagger, longSword, battleAxe};
+            shop = new Shop(shopInventory);
         }
 
         //Repeated until the game ends
         public void Update()
         {
+            OpenShopMenu();
             CreateCharacter(player);
             SelectLoadout(player);
-            StartBattle();
+            //StartBattle();
         }
 
         //Performed once when the game ends
