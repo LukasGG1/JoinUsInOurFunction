@@ -29,7 +29,7 @@ namespace HelloWorld
             //Find the item to buy in the inventory array
             Item itemToBuy = _inventory[shopIndex];
             //Check to see if the player ourchased the item sucessfully.
-            if(player.Buy(_inventory[shopIndex], playerIndex));
+            if(player.Buy(_inventory[shopIndex], playerIndex))
             {
                 //Increase  shops gold by item cost to complete the transaction
                 gold += itemToBuy.cost;
@@ -37,7 +37,7 @@ namespace HelloWorld
             }
             return false;
         }
-        public void CheckPlayerFunds(Player)
+        public void CheckPlayerFunds()
         {
 
         }

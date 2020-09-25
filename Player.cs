@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Player
+    class Player : Character
     {
-        private string _name;
-        private int _health;
-        private int _damage;
+        //private string _name;
+        //private int _health;
+        //private int _damage;
         private Item[] _inventory;
         private Item currentWeapon;
         private Item hand;
@@ -22,17 +22,17 @@ namespace HelloWorld
         {
             _inventory = new Item[3];
             gold = 100;
-            _health = 100;
-            _damage = 10;
+            health = 100;
+            damage = 10;
             hand.name = "Kira's Fetish";
             hand.statBoost = 1;
         }
                             //S.H.I.E.L.D       0
-        public Player(string nameVal, int healthVal, int damageVal, int inventorySize)
+        public Player(string nameVal, int healthVal, int damageVal, int inventorySize) : base(healthVal, nameVal, damageVal)
         {
-            _name = nameVal;
-            _health = healthVal;
-            _damage = damageVal;
+            name = nameVal;
+            health = healthVal;
+            damage = damageVal;
             _inventory = new Item[inventorySize];
             hand.name = "Kira's Fetish";
             hand.statBoost = 1;
@@ -86,11 +86,11 @@ namespace HelloWorld
 
         public string GetName()
         {
-            return _name;
+            return name;
         }
         public bool GetIsAlive()
         {
-            return _health > 0;
+            return health > 0;
         }
 
         public void UnequipItem()
@@ -98,26 +98,32 @@ namespace HelloWorld
             currentWeapon = hand;
         }
 
-        public void Attack(Player enemy)
-        {
-            int totalDamage = _damage + currentWeapon.statBoost;
-            enemy.TakeDamage(_damage);  
-        }
+        //public void Attack(Player enemy)
+        //{
+            //int totalDamage = damage + currentWeapon.statBoost;
+            //enemy.TakeDamage(damage);  
+        //}
 
         public void PrintStat()
         {
-            Console.WriteLine("Name: " + _name);
-            Console.WriteLine("Health: " + _health);
-            Console.WriteLine("Damage: " + _damage);
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Health: " + health);
+            Console.WriteLine("Damage: " + damage);
         }
 
+        public override float Attack(Character enemy)
+        {
+            float totalDamage = damage + currentWeapon.statBoost;
+            enemy.TakeDamage(totalDamage);
+            return totalDamage;
+        }
         public void TakeDamage(int damageVal)
         {
             if(GetIsAlive())
             {
-                _health -= damageVal;
+                health -= damageVal;
             }
-            Console.WriteLine(_name + " took " + damageVal + " damage!");
+            Console.WriteLine(name + " took " + damageVal + " damage!");
         }
         public int health;
         public int damage;

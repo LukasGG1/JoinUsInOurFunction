@@ -10,6 +10,7 @@ namespace HelloWorld
     {
         bool _gameOver = false;
         private Player player;
+        private Character playerPartner;
         Player _enemy;
         Item longSword;
         Item dagger;
@@ -21,6 +22,7 @@ namespace HelloWorld
         private Item buckler; //as shield
         private Shop shop;
         private Item[] shopInventory;
+        private Mage mage;
 
         //Run the game
         public void Run()
@@ -152,6 +154,11 @@ namespace HelloWorld
             {
                 Console.WriteLine((i + 1) + "." + inventory[i].name + inventory[i].cost);
             }
+        }
+
+        public void StartBattle()
+        {
+
         }
 
         private void OpenShopMenu()
@@ -321,6 +328,8 @@ namespace HelloWorld
         {
             _gameOver = false;
             player = new Player();
+            mage = new Mage();
+            playerPartner = new Mage(120, "Bill", 20, 100);
             InitializeItem();
             shopInventory = new Item[] { healthPotion, buckler, sappherie };   
             //mace, bow, dagger, longSword, battleAxe};
